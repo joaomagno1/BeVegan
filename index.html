@@ -3,42 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infográfico do Projeto: BeVegan</title>
+    <title>Infográfico do Projeto: BeVegan (com Tour Interativo)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- 
-    Palette: Energetic & Playful
-    #00BFA5 (Teal)
-    #FFC107 (Amber)
-    #448AFF (Blue)
-    #FFFFFF (White)
-    #212121 (Dark Gray)
-    #F5F5F5 (Light Gray Background)
-    -->
-    <!-- 
-    Narrative Plan:
-    1.  Header: Introduce BeVegan and its core mission.
-    2.  The Market Opportunity: Visualize the problem (dropout rate) and the growing market demand.
-    3.  Project Goals: Clearly display the KPIs for success (Acquisition, Retention, Conversion).
-    4.  Financial Strategy: Break down the initial investment and project the path to profitability.
-    5.  Risk Analysis: Present key risks and mitigation plans in a clear, organized table.
-    6.  Development Roadmap: Show the project timeline from start to MVP launch.
-    7.  Technology Stack: Detail the robust and scalable technologies chosen for the project.
-    8.  Footer: Concluding statement.
-    -->
-    <!--
-    Visualization Plan (NO SVG, NO Mermaid JS Confirmed):
-    -   Market Demand: Line Chart (Chart.js) -> Goal: Change -> Justification: Best for showing trends over time.
-    -   Investment Breakdown: Donut Chart (Chart.js) -> Goal: Compare -> Justification: Shows composition of a whole (budget).
-    -   KPIs (Acquisition, Retention, Conversion): Donut Charts (Chart.js) -> Goal: Inform -> Justification: Clearly visualizes a single key metric/target.
-    -   Revenue Projection: Bar Chart (Chart.js) -> Goal: Change/Compare -> Justification: Compares revenue against costs over time to show payback trend.
-    -   Risk Matrix: Table (HTML/Tailwind) -> Goal: Organize -> Justification: Best for presenting structured, multi-faceted data clearly.
-    -   Development Roadmap: Timeline (HTML/Tailwind) -> Goal: Change -> Justification: Visually represents sequential events over time without using graphics libraries.
-    -   Tech Stack: Grid with Icons (HTML/Tailwind/Unicode) -> Goal: Organize -> Justification: Simple, clean way to list technologies.
-    -->
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -85,6 +55,23 @@
             width: 2px;
             background-color: #e0e0e0;
         }
+        .tab-btn.active {
+            border-color: #00BFA5;
+            color: #00BFA5;
+            font-weight: 600;
+        }
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 4px solid #00BFA5;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body class="text-gray-800">
@@ -96,7 +83,7 @@
             <p class="text-lg md:text-xl text-gray-600">Sua jornada vegana, simples e deliciosa: Uma Análise de Mercado e Viabilidade.</p>
         </header>
 
-        <main class="space-y-8">
+        <main class="space-y-12">
             
             <section id="opportunity" class="bg-white rounded-lg shadow-lg p-6 md:p-8">
                 <h2 class="text-2xl font-bold text-center mb-6 text-[#00BFA5]">A Oportunidade de Mercado</h2>
@@ -164,111 +151,133 @@
                 </div>
             </section>
 
-            <section id="risks" class="bg-white rounded-lg shadow-lg p-6 md:p-8">
-                <h2 class="text-2xl font-bold text-center mb-6">Análise de Riscos e Mitigação</h2>
-                <p class="max-w-3xl mx-auto text-center text-gray-600 mb-8">Identificamos os principais riscos do projeto e desenvolvemos planos de mitigação proativos para garantir que possamos navegar pelos desafios e manter o projeto no caminho certo.</p>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse">
-                        <thead class="bg-gray-100">
-                            <tr>
-                                <th class="p-3 font-semibold text-sm">Risco</th>
-                                <th class="p-3 font-semibold text-sm">Probabilidade</th>
-                                <th class="p-3 font-semibold text-sm">Impacto</th>
-                                <th class="p-3 font-semibold text-sm">Plano de Mitigação</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="border-b">
-                                <td class="p-3">Baixa adesão inicial do público</td>
-                                <td class="p-3"><span class="bg-yellow-200 text-yellow-800 text-xs font-bold mr-2 px-2.5 py-0.5 rounded-full">Média</span></td>
-                                <td class="p-3"><span class="bg-red-200 text-red-800 text-xs font-bold mr-2 px-2.5 py-0.5 rounded-full">Alto</span></td>
-                                <td class="p-3">Marketing agressivo com microinfluenciadores e conteúdo viral.</td>
-                            </tr>
-                            <tr class="border-b">
-                                <td class="p-3">Complexidade da geração de planos nutricionais</td>
-                                <td class="p-3"><span class="bg-red-200 text-red-800 text-xs font-bold mr-2 px-2.5 py-0.5 rounded-full">Alta</span></td>
-                                <td class="p-3"><span class="bg-yellow-200 text-yellow-800 text-xs font-bold mr-2 px-2.5 py-0.5 rounded-full">Médio</span></td>
-                                <td class="p-3">Uso de API de nutrição com curadoria de nutricionistas parceiros.</td>
-                            </tr>
-                            <tr class="border-b">
-                                <td class="p-3">Sobrecarga no suporte ao cliente</td>
-                                <td class="p-3"><span class="bg-yellow-200 text-yellow-800 text-xs font-bold mr-2 px-2.5 py-0.5 rounded-full">Média</span></td>
-                                <td class="p-3"><span class="bg-yellow-200 text-yellow-800 text-xs font-bold mr-2 px-2.5 py-0.5 rounded-full">Médio</span></td>
-                                <td class="p-3">Implementação de chatbot para FAQs e fluxo de escalonamento claro.</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3">Atraso no cronograma</td>
-                                <td class="p-3"><span class="bg-yellow-200 text-yellow-800 text-xs font-bold mr-2 px-2.5 py-0.5 rounded-full">Média</span></td>
-                                <td class="p-3"><span class="bg-yellow-200 text-yellow-800 text-xs font-bold mr-2 px-2.5 py-0.5 rounded-full">Médio</span></td>
-                                <td class="p-3">Adoção de Metodologia Ágil com Sprints de 2 semanas e revisões constantes.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-            
             <section id="roadmap" class="bg-white rounded-lg shadow-lg p-6 md:p-8">
                 <h2 class="text-2xl font-bold text-center mb-12">Cronograma de Desenvolvimento do MVP</h2>
                 <div class="relative pl-8 timeline-path">
                     <div class="relative mb-8 pl-8 timeline-item">
-                        <h3 class="font-bold text-lg text-[#448AFF]">Aprovação e Planejamento</h3>
+                        <h3 class="font-bold text-lg text-[#448AFF]">Planejamento</h3>
                         <p class="text-sm text-gray-500">Data: 29/05/2025</p>
-                        <p class="mt-2 text-gray-700">Definição do escopo, visão e priorização do backlog inicial para o projeto.</p>
                     </div>
                     <div class="relative mb-8 pl-8 timeline-item">
-                        <h3 class="font-bold text-lg text-[#448AFF]">Design UX/UI e Protótipo</h3>
+                        <h3 class="font-bold text-lg text-[#448AFF]">Protótipo de UX/UI</h3>
                         <p class="text-sm text-gray-500">Data: 30/06/2025</p>
-                        <p class="mt-2 text-gray-700">Criação de um protótipo navegável de alta fidelidade para ser validado com usuários reais.</p>
                     </div>
                     <div class="relative mb-8 pl-8 timeline-item">
-                        <h3 class="font-bold text-lg text-[#448AFF]">Desenvolvimento do Core</h3>
+                        <h3 class="font-bold text-lg text-[#00BFA5]">Desenvolvimento do Core</h3>
                         <p class="text-sm text-gray-500">Data: 15/08/2025</p>
-                        <p class="mt-2 text-gray-700">Implementação das funcionalidades centrais: autenticação, questionário e dashboard.</p>
                     </div>
                     <div class="relative mb-8 pl-8 timeline-item">
-                        <h3 class="font-bold text-lg text-[#00BFA5]">Desenvolvimento do MVP Completo</h3>
-                        <p class="text-sm text-gray-500">Data: 31/10/2025</p>
-                        <p class="mt-2 text-gray-700">Finalização de todas as funcionalidades do MVP, incluindo plano alimentar, comunidade e conteúdo.</p>
-                    </div>
-                    <div class="relative mb-8 pl-8 timeline-item">
-                        <h3 class="font-bold text-lg text-[#FFC107]">Lançamento Oficial do MVP</h3>
+                        <h3 class="font-bold text-lg text-[#FFC107]">Lançamento Oficial</h3>
                         <p class="text-sm text-gray-500">Data: 15/11/2025</p>
-                        <p class="mt-2 text-gray-700">Publicação do aplicativo na Apple Store e Google Play, início da campanha de marketing.</p>
                     </div>
                 </div>
             </section>
-            
-            <section id="tech-stack" class="bg-white rounded-lg shadow-lg p-6 md:p-8">
-                 <h2 class="text-2xl font-bold text-center mb-6">Nossa Arquitetura Tecnológica</h2>
-                 <p class="max-w-3xl mx-auto text-center text-gray-600 mb-8">Escolhemos um conjunto de tecnologias modernas, escaláveis e robustas para garantir uma experiência de usuário fluida e uma base sólida para o crescimento futuro do BeVegan.</p>
-                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 text-center">
-                    <div class="bg-gray-50 p-4 rounded-lg flex flex-col items-center justify-center">
-                        <span class="text-4xl">⚛️</span>
-                        <p class="mt-2 font-semibold">React Native</p>
-                    </div>
-                     <div class="bg-gray-50 p-4 rounded-lg flex flex-col items-center justify-center">
-                        <span class="text-4xl">📦</span>
-                        <p class="mt-2 font-semibold">Node.js</p>
-                    </div>
-                     <div class="bg-gray-50 p-4 rounded-lg flex flex-col items-center justify-center">
-                        <span class="text-4xl">🍃</span>
-                        <p class="mt-2 font-semibold">MongoDB</p>
-                    </div>
-                     <div class="bg-gray-50 p-4 rounded-lg flex flex-col items-center justify-center">
-                        <span class="text-4xl">🔥</span>
-                        <p class="mt-2 font-semibold">Firebase</p>
-                    </div>
-                    <div class="bg-gray-50 p-4 rounded-lg flex flex-col items-center justify-center">
-                        <span class="text-4xl">☁️</span>
-                        <p class="mt-2 font-semibold">AWS/GCP</p>
-                    </div>
-                    <div class="bg-gray-50 p-4 rounded-lg flex flex-col items-center justify-center">
-                        <span class="text-4xl">⚙️</span>
-                        <p class="mt-2 font-semibold">CI/CD</p>
-                    </div>
-                 </div>
-            </section>
 
+            <section id="prototypes" class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-2xl font-bold text-center mb-2">Tour Interativo pelas Telas</h2>
+                <p class="text-center text-gray-600 mb-10">Navegue pelas principais telas do BeVegan para visualizar a experiência do usuário.</p>
+
+                <div class="max-w-md mx-auto bg-gray-900 rounded-2xl shadow-2xl p-4 border-4 border-gray-700">
+                    <div class="w-full h-4 flex justify-center items-center relative mb-4">
+                         <div class="w-2 h-2 bg-gray-500 rounded-full"></div>
+                    </div>
+                    <div class="bg-white rounded-lg">
+                        <div class="mb-4 border-b border-gray-200 px-2">
+                            <nav class="flex -mb-px" id="tab-nav">
+                                <button data-tab="tab-home" class="tab-btn active text-sm flex-1 py-2 px-1 border-b-2">Home</button>
+                                <button data-tab="tab-plan" class="tab-btn text-sm flex-1 py-2 px-1 border-b-2 border-transparent">Plano</button>
+                                <button data-tab="tab-recipe" class="tab-btn text-sm flex-1 py-2 px-1 border-b-2 border-transparent">Receita</button>
+                                <button data-tab="tab-community" class="tab-btn text-sm flex-1 py-2 px-1 border-b-2 border-transparent">Comunidade</button>
+                            </nav>
+                        </div>
+
+                        <div id="tab-content" class="h-[500px] overflow-y-auto bg-gray-50 rounded-b-lg p-2">
+                            <!-- Home Tab -->
+                            <div id="tab-home" class="tab-pane">
+                                <div class="flex justify-between items-center p-2">
+                                    <h3 class="font-bold text-gray-800">Olá, Chrystian!</h3>
+                                    <div class="w-8 h-8 bg-teal-100 rounded-full"></div>
+                                </div>
+                                <div class="mt-4 p-2 bg-white rounded-lg shadow">
+                                    <h4 class="font-semibold">Seu plano para hoje</h4>
+                                    <div class="flex justify-around mt-2 text-xs">
+                                        <span class="bg-teal-100 text-teal-800 px-2 py-1 rounded-full">Café da Manhã</span>
+                                        <span>Almoço</span>
+                                        <span>Jantar</span>
+                                    </div>
+                                    <div class="mt-3 flex items-center">
+                                        <div class="w-16 h-16 bg-gray-200 rounded-lg"></div>
+                                        <p class="ml-3 text-sm font-medium">Panquecas de banana com aveia</p>
+                                    </div>
+                                </div>
+                                 <div class="mt-4 p-2 bg-white rounded-lg shadow">
+                                    <h4 class="font-semibold">Continue de onde parou</h4>
+                                    <p class="text-sm mt-1 text-gray-600">Desafio: 7 dias sem açúcar (Dia 3)</p>
+                                </div>
+                            </div>
+
+                            <!-- Plan Tab -->
+                            <div id="tab-plan" class="tab-pane hidden">
+                                <div class="flex justify-between items-center p-2">
+                                    <h3 class="font-bold">Meu Plano Semanal</h3>
+                                    <div class="text-xs px-2 py-1 bg-[#00BFA5] text-white rounded-full">🛒 Gerar Lista</div>
+                                </div>
+                                <div class="flex justify-around mt-3 text-xs border-b">
+                                    <span class="font-bold text-[#00BFA5] border-b-2 border-[#00BFA5]">Seg</span>
+                                    <span>Ter</span>
+                                    <span>Qua</span>
+                                </div>
+                                <div class="mt-4 p-2 space-y-3" id="plan-content">
+                                    <p class="text-xs font-bold text-gray-500">ALMOÇO</p>
+                                    <div class="flex items-center bg-white p-2 rounded-lg shadow-sm">
+                                        <div class="w-12 h-12 bg-gray-200 rounded"></div>
+                                        <div class="ml-3 flex-1">
+                                            <p class="text-sm font-medium">Grão de bico ao curry</p>
+                                        </div>
+                                        <div class="text-xl">🔄</div>
+                                    </div>
+                                </div>
+                                <div class="p-2 mt-4">
+                                     <button id="generate-plan-variation" class="w-full py-2 bg-amber-400 text-white rounded-lg font-semibold flex items-center justify-center">
+                                        ✨ Gerar Variações com IA
+                                     </button>
+                                </div>
+                                <div id="plan-variation-loader" class="hidden flex justify-center items-center mt-4">
+                                    <div class="loader"></div>
+                                </div>
+                            </div>
+
+                            <!-- Recipe Tab -->
+                            <div id="tab-recipe" class="tab-pane hidden">
+                               <div class="p-2">
+                                   <h3 class="text-lg font-bold">Chef Virtual ✨</h3>
+                                   <p class="text-sm text-gray-600">Quais ingredientes você tem na sua geladeira? Deixe a IA criar uma receita para você!</p>
+                                   <textarea id="ingredients-input" class="w-full mt-2 p-2 border rounded-lg h-24" placeholder="Ex: tomate, cebola, alho, lentilha..."></textarea>
+                                   <button id="generate-recipe" class="w-full mt-2 py-2 bg-[#00BFA5] text-white rounded-lg font-semibold">Gerar Receita</button>
+                               </div>
+                               <div id="recipe-loader" class="hidden flex justify-center items-center mt-4">
+                                    <div class="loader"></div>
+                               </div>
+                               <div id="recipe-output" class="mt-4 p-2 text-sm space-y-2"></div>
+                            </div>
+                            
+                            <!-- Community Tab -->
+                            <div id="tab-community" class="tab-pane hidden">
+                                <div class="flex justify-around mt-1 mb-3 text-sm border-b">
+                                    <span class="font-bold text-[#00BFA5] border-b-2 border-[#00BFA5]">Fórum</span>
+                                    <span>Desafios</span>
+                               </div>
+                               <div class="p-2 space-y-3">
+                                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                                        <h4 class="font-semibold text-sm">Dúvida: Onde encontrar levedura?</h4>
+                                        <p class="text-xs text-gray-500 mt-1">por @ana.santos | 💬 5 respostas</p>
+                                    </div>
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </main>
 
         <footer class="text-center mt-12 py-6 border-t">
@@ -295,136 +304,114 @@
                             let label = item.chart.data.labels[item.dataIndex];
                             if (Array.isArray(label)) {
                               return label.join(' ');
-                            } else {
-                              return label;
                             }
+                            return label;
                         }
                     }
                 }
             }
         };
 
-        const processLabel = (label) => {
-            if (label.length > 16) {
-                const words = label.split(' ');
-                const lines = [];
-                let currentLine = '';
-                words.forEach(word => {
-                    if ((currentLine + word).length > 16) {
-                        lines.push(currentLine.trim());
-                        currentLine = '';
-                    }
-                    currentLine += word + ' ';
+        async function callGeminiAPI(prompt) {
+            const apiKey = "";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+            
+            const payload = {
+                contents: [{
+                    role: "user",
+                    parts: [{ text: prompt }]
+                }]
+            };
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
                 });
-                lines.push(currentLine.trim());
-                return lines;
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const result = await response.json();
+                
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    return result.candidates[0].content.parts[0].text;
+                } else {
+                    return "Não foi possível gerar uma resposta. Tente novamente.";
+                }
+            } catch (error) {
+                console.error("Error calling Gemini API:", error);
+                return "Ocorreu um erro ao conectar com a IA. Verifique o console para mais detalhes.";
             }
-            return label;
-        };
+        }
+
+        function formatApiResponse(text) {
+             return text
+                .replace(/## (.*)/g, '<h3 class="text-md font-bold text-gray-800 mt-3">$1</h3>') 
+                .replace(/\* (.*)/g, '<li class="ml-4 list-disc">$1</li>')
+                .replace(/(\d)\. (.*)/g, '<li class="ml-4">$1. $2</li>')
+                .replace(/\n/g, '<br>');
+        }
 
         document.addEventListener('DOMContentLoaded', () => {
+            // Chart initializations
+            new Chart(document.getElementById('marketGrowthChart'), { type: 'line', data: { labels: ['2022', '2023', '2024', '2025 (Proj.)', '2026 (Proj.)'], datasets: [{ label: 'Crescimento do Mercado', data: [100, 150, 220, 310, 450], borderColor: chartColors.teal, backgroundColor: 'rgba(0, 191, 165, 0.1)', fill: true, tension: 0.4 }] }, options: { ...tooltipConfig, responsive: true, maintainAspectRatio: false } });
+            new Chart(document.getElementById('acquisitionChart'), { type: 'doughnut', data: { labels: ['Meta (10k)', 'Restante'], datasets: [{ data: [10000, 0], backgroundColor: [chartColors.blue, chartColors.lightGray], borderWidth: 0 }] }, options: { ...tooltipConfig, responsive: true, maintainAspectRatio: false, cutout: '70%', plugins: { legend: { display: false } } } });
+            new Chart(document.getElementById('retentionChart'), { type: 'doughnut', data: { labels: ['Retenção (30%)', 'Churn (70%)'], datasets: [{ data: [30, 70], backgroundColor: [chartColors.teal, chartColors.lightGray], borderWidth: 0 }] }, options: { ...tooltipConfig, responsive: true, maintainAspectRatio: false, cutout: '70%', plugins: { legend: { display: false } } } });
+            new Chart(document.getElementById('conversionChart'), { type: 'doughnut', data: { labels: ['Conversão (5%)', 'Não Convertidos (95%)'], datasets: [{ data: [5, 95], backgroundColor: [chartColors.amber, chartColors.lightGray], borderWidth: 0 }] }, options: { ...tooltipConfig, responsive: true, maintainAspectRatio: false, cutout: '70%', plugins: { legend: { display: false } } } });
+            new Chart(document.getElementById('investmentChart'), { type: 'doughnut', data: { labels: ['Desenvolvimento (R$30k)', 'Marketing (R$15k)', 'Infraestrutura (R$5k)'], datasets: [{ data: [30000, 15000, 5000], backgroundColor: [chartColors.blue, chartColors.teal, chartColors.amber], borderWidth: 0 }] }, options: { ...tooltipConfig, responsive: true, maintainAspectRatio: false, cutout: '70%', plugins: { legend: { position: 'bottom', labels: { usePointStyle: true } } } } });
+            new Chart(document.getElementById('revenueChart'), { type: 'bar', data: { labels: ['Mês 1-3', 'Mês 4-6', 'Mês 7-9', 'Mês 10-12'], datasets: [{ label: 'Receita Estimada (R$)', data: [1500, 4776, 9000, 15000], backgroundColor: chartColors.teal, }, { label: 'Custo Operacional (R$)', data: [5000, 5000, 6000, 6500], backgroundColor: chartColors.lightGray, }] }, options: { ...tooltipConfig, responsive: true, maintainAspectRatio: false, scales: { x: { stacked: false }, y: { stacked: false, beginAtZero: true } }, plugins: { legend: { position: 'bottom' } } } });
 
-            if (document.getElementById('marketGrowthChart')) {
-                new Chart(document.getElementById('marketGrowthChart'), {
-                    type: 'line',
-                    data: {
-                        labels: ['2022', '2023', '2024', '2025 (Proj.)', '2026 (Proj.)'],
-                        datasets: [{
-                            label: 'Crescimento do Mercado',
-                            data: [100, 150, 220, 310, 450],
-                            borderColor: chartColors.teal,
-                            backgroundColor: 'rgba(0, 191, 165, 0.1)',
-                            fill: true,
-                            tension: 0.4
-                        }]
-                    },
-                    options: { ...tooltipConfig, responsive: true, maintainAspectRatio: false }
-                });
-            }
+            // Tab navigation
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabPanes = document.querySelectorAll('.tab-pane');
+            const tabNav = document.getElementById('tab-nav');
+            tabNav.addEventListener('click', function (e) {
+                if (e.target.classList.contains('tab-btn')) {
+                    const tabId = e.target.dataset.tab;
+                    tabButtons.forEach(btn => { btn.classList.remove('active'); btn.classList.add('border-transparent'); });
+                    e.target.classList.add('active'); e.target.classList.remove('border-transparent');
+                    tabPanes.forEach(pane => { pane.id === tabId ? pane.classList.remove('hidden') : pane.classList.add('hidden'); });
+                }
+            });
 
-            if (document.getElementById('acquisitionChart')) {
-                new Chart(document.getElementById('acquisitionChart'), {
-                    type: 'doughnut',
-                    data: {
-                        labels: ['Meta (10k)', 'Restante'],
-                        datasets: [{
-                            data: [10000, 0],
-                            backgroundColor: [chartColors.blue, chartColors.lightGray],
-                            borderWidth: 0
-                        }]
-                    },
-                    options: { ...tooltipConfig, responsive: true, maintainAspectRatio: false, cutout: '70%', plugins: { legend: { display: false } } }
-                });
-            }
+            // Gemini Feature: Recipe Generator
+            const generateRecipeBtn = document.getElementById('generate-recipe');
+            const ingredientsInput = document.getElementById('ingredients-input');
+            const recipeOutput = document.getElementById('recipe-output');
+            const recipeLoader = document.getElementById('recipe-loader');
             
-            if (document.getElementById('retentionChart')) {
-                new Chart(document.getElementById('retentionChart'), {
-                    type: 'doughnut',
-                    data: {
-                        labels: ['Retenção (30%)', 'Churn (70%)'],
-                        datasets: [{
-                            data: [30, 70],
-                            backgroundColor: [chartColors.teal, chartColors.lightGray],
-                            borderWidth: 0
-                        }]
-                    },
-                    options: { ...tooltipConfig, responsive: true, maintainAspectRatio: false, cutout: '70%', plugins: { legend: { display: false } } }
-                });
-            }
+            generateRecipeBtn.addEventListener('click', async () => {
+                const ingredients = ingredientsInput.value;
+                if (!ingredients.trim()) {
+                    recipeOutput.innerHTML = '<p class="text-red-500">Por favor, insira alguns ingredientes.</p>';
+                    return;
+                }
+                recipeLoader.classList.remove('hidden');
+                recipeOutput.innerHTML = '';
+                const prompt = `Você é um chef vegano. Crie uma receita vegana simples e deliciosa usando os seguintes ingredientes: ${ingredients}. Formate a resposta com um título usando '##', uma lista de ingredientes usando '*' e um passo a passo para o modo de preparo usando números.`;
+                const response = await callGeminiAPI(prompt);
+                recipeLoader.classList.add('hidden');
+                recipeOutput.innerHTML = formatApiResponse(response);
+            });
 
-            if (document.getElementById('conversionChart')) {
-                new Chart(document.getElementById('conversionChart'), {
-                    type: 'doughnut',
-                    data: {
-                        labels: ['Conversão (5%)', 'Não Convertidos (95%)'],
-                        datasets: [{
-                            data: [5, 95],
-                            backgroundColor: [chartColors.amber, chartColors.lightGray],
-                            borderWidth: 0
-                        }]
-                    },
-                    options: { ...tooltipConfig, responsive: true, maintainAspectRatio: false, cutout: '70%', plugins: { legend: { display: false } } }
-                });
-            }
+            // Gemini Feature: Plan Variation
+            const generatePlanBtn = document.getElementById('generate-plan-variation');
+            const planContent = document.getElementById('plan-content');
+            const planLoader = document.getElementById('plan-variation-loader');
 
-            if (document.getElementById('investmentChart')) {
-                 new Chart(document.getElementById('investmentChart'), {
-                    type: 'doughnut',
-                    data: {
-                        labels: ['Desenvolvimento (R$30k)', 'Marketing (R$15k)', 'Infraestrutura (R$5k)'],
-                        datasets: [{
-                            data: [30000, 15000, 5000],
-                            backgroundColor: [chartColors.blue, chartColors.teal, chartColors.amber],
-                            borderWidth: 0
-                        }]
-                    },
-                    options: { ...tooltipConfig, responsive: true, maintainAspectRatio: false, cutout: '70%', plugins: { legend: { position: 'bottom', labels: { usePointStyle: true } } } }
-                });
-            }
-            
-            if (document.getElementById('revenueChart')) {
-                const revenueLabels = ['Mês 1-3', 'Mês 4-6', 'Mês 7-9', 'Mês 10-12'];
-                new Chart(document.getElementById('revenueChart'), {
-                    type: 'bar',
-                    data: {
-                        labels: revenueLabels.map(processLabel),
-                        datasets: [
-                            {
-                                label: 'Receita Estimada (R$)',
-                                data: [1500, 4776, 9000, 15000],
-                                backgroundColor: chartColors.teal,
-                            },
-                             {
-                                label: 'Custo Operacional (R$)',
-                                data: [5000, 5000, 6000, 6500],
-                                backgroundColor: chartColors.lightGray,
-                            }
-                        ]
-                    },
-                    options: { ...tooltipConfig, responsive: true, maintainAspectRatio: false, scales: { x: { stacked: false }, y: { stacked: false, beginAtZero: true } }, plugins: { legend: { position: 'bottom' } } }
-                });
-            }
-
+            generatePlanBtn.addEventListener('click', async () => {
+                planLoader.classList.remove('hidden');
+                planContent.innerHTML = '';
+                const prompt = `Você é um nutricionista vegano. O almoço de segunda-feira é "Grão de bico ao curry". Sugira 3 variações criativas e saudáveis para esta refeição. Formate a resposta com um título usando '##' e a lista de sugestões usando '*'.`;
+                const response = await callGeminiAPI(prompt);
+                planLoader.classList.add('hidden');
+                planContent.innerHTML = formatApiResponse(response);
+            });
         });
     </script>
 </body>
