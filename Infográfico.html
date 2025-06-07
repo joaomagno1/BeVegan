@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infográfico do Projeto: BeVegan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- 
+    Palette: Energetic & Playful
+    #00BFA5 (Teal)
+    #FFC107 (Amber)
+    #448AFF (Blue)
+    #FFFFFF (White)
+    #212121 (Dark Gray)
+    #F5F5F5 (Light Gray Background)
+    -->
+    <!-- 
+    Narrative Plan:
+    1.  Header: Introduce BeVegan and its core mission.
+    2.  The Market Opportunity: Visualize the problem (dropout rate) and the growing market demand.
+    3.  Project Goals: Clearly display the KPIs for success (Acquisition, Retention, Conversion).
+    4.  Financial Strategy: Break down the initial investment and project the path to profitability.
+    5.  Risk Analysis: Present key risks and mitigation plans in a clear, organized table.
+    6.  Development Roadmap: Show the project timeline from start to MVP launch.
+    7.  Technology Stack: Detail the robust and scalable technologies chosen for the project.
+    8.  Footer: Concluding statement.
+    -->
+    <!--
+    Visualization Plan (NO SVG, NO Mermaid JS Confirmed):
+    -   Market Demand: Line Chart (Chart.js) -> Goal: Change -> Justification: Best for showing trends over time.
+    -   Investment Breakdown: Donut Chart (Chart.js) -> Goal: Compare -> Justification: Shows composition of a whole (budget).
+    -   KPIs (Acquisition, Retention, Conversion): Donut Charts (Chart.js) -> Goal: Inform -> Justification: Clearly visualizes a single key metric/target.
+    -   Revenue Projection: Bar Chart (Chart.js) -> Goal: Change/Compare -> Justification: Compares revenue against costs over time to show payback trend.
+    -   Risk Matrix: Table (HTML/Tailwind) -> Goal: Organize -> Justification: Best for presenting structured, multi-faceted data clearly.
+    -   Development Roadmap: Timeline (HTML/Tailwind) -> Goal: Change -> Justification: Visually represents sequential events over time without using graphics libraries.
+    -   Tech Stack: Grid with Icons (HTML/Tailwind/Unicode) -> Goal: Organize -> Justification: Simple, clean way to list technologies.
+    -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F5F5F5;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .gradient-text {
+            background: linear-gradient(45deg, #00BFA5, #448AFF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -31px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #448AFF;
+            border: 3px solid #F5F5F5;
+            z-index: 1;
+        }
+        .timeline-path::before {
+            content: '';
+            position: absolute;
+            left: -22px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-bold gradient-text mb-2">Projeto BeVegan</h1>
+            <p class="text-lg md:text-xl text-gray-600">Sua jornada vegana, simples e deliciosa: Uma Análise de Mercado e Viabilidade.</p>
+        </header>
+
+        <main class="space-y-8">
+            
+            <section id="opportunity" class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-2xl font-bold text-center mb-6 text-[#00BFA5]">A Oportunidade de Mercado</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">O Problema a Ser Resolvido</h3>
+                        <p class="mb-4">A transição para o veganismo é um desafio. A falta de orientação prática e apoio resulta em uma alta taxa de desistência. O BeVegan surge para preencher essa lacuna, oferecendo as ferramentas necessárias para uma jornada bem-sucedida e sustentável.</p>
+                        <div class="bg-teal-50 rounded-lg p-6 text-center">
+                            <div class="text-6xl font-bold text-[#00BFA5]">84%</div>
+                            <p class="text-gray-700 mt-2">É a taxa estimada de pessoas que abandonam a dieta vegana, muitas por falta de apoio prático.</p>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                         <canvas id="marketGrowthChart"></canvas>
+                         <p class="text-center text-sm text-gray-500 mt-2">Projeção do crescimento no interesse por soluções de alimentação saudável.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="goals" class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                 <h2 class="text-2xl font-bold text-center mb-6 text-[#448AFF]">Metas do Projeto (Primeiro Trimestre)</h2>
+                 <p class="max-w-3xl mx-auto text-center text-gray-600 mb-8">Nossos objetivos SMART-C são focados em aquisição, retenção e conversão, garantindo um crescimento sustentável e validando o valor do produto para o cliente desde o início.</p>
+                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <div class="chart-container h-64 max-h-64">
+                            <canvas id="acquisitionChart"></canvas>
+                        </div>
+                        <h3 class="text-lg font-semibold mt-4">Aquisição</h3>
+                        <p class="text-gray-600">10.000 downloads</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="chart-container h-64 max-h-64">
+                            <canvas id="retentionChart"></canvas>
+                        </div>
+                        <h3 class="text-lg font-semibold mt-4">Retenção (M1)</h3>
+                        <p class="text-gray-600">Taxa de 30%</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="chart-container h-64 max-h-64">
+                            <canvas id="conversionChart"></canvas>
+                        </div>
+                        <h3 class="text-lg font-semibold mt-4">Conversão Premium</h3>
+                        <p class="text-gray-600">Meta de 5%</p>
+                    </div>
+                 </div>
+            </section>
+            
+            <section id="financials" class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-2xl font-bold text-center mb-6 text-[#FFC107]">Análise Financeira do MVP</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 items-center">
+                    <div class="lg:col-span-2 text-center">
+                         <h3 class="text-xl font-semibold mb-2">Investimento Inicial: R$ 50.000</h3>
+                         <p class="text-gray-600 mb-4">O orçamento está estrategicamente distribuído para maximizar o impacto do desenvolvimento e do marketing de lançamento.</p>
+                         <div class="chart-container h-64 max-h-64">
+                            <canvas id="investmentChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-3">
+                        <h3 class="text-xl font-semibold mb-2 text-center lg:text-left">Projeção de Receita e Payback</h3>
+                        <p class="text-gray-600 mb-4 text-center lg:text-left">Com um modelo Freemium e uma meta conservadora de conversão, o projeto visa atingir o ponto de equilíbrio (payback) entre 14 e 18 meses, demonstrando um caminho claro para a lucratividade.</p>
+                        <div class="chart-container h-80 max-h-80">
+                            <canvas id="revenueChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="risks" class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-2xl font-bold text-center mb-6">Análise de Riscos e Mitigação</h2>
+                <p class="max-w-3xl mx-auto text-center text-gray-600 mb-8">Identificamos os principais riscos do projeto e desenvolvemos planos de mitigação proativos para garantir que possamos navegar pelos desafios e manter o projeto no caminho certo.</p>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="p-3 font-semibold text-sm">Risco</th>
+                                <th class="p-3 font-semibold text-sm">Probabilidade</th>
+                                <th class="p-3 font-semibold text-sm">Impacto</th>
+                                <th class="p-3 font-semibold text-sm">Plano de Mitigação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b">
+                                <td class="p-3">Baixa adesão inicial do público</td>
+                                <td class="p-3"><span class="bg-yellow-200 text-yellow-800 text-xs font-bold mr-2 px-2.5 py-0.5 rounded-full">Média</span></td>
+                                <td class="p-3"><span class="bg-red-200 text-red-800 text-xs font-bold mr-2 px-2.5 py-0.5 rounded-full">Alto</span></td>
+                                <td class="p-3">Marketing agressivo com microinfluenciadores e conteúdo viral.</td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-3">Complexidade da geração de planos nutricionais</td>
+                                <td class="p-3"><span class="bg-red-200 text-red-800 text-xs font-bold mr-2 px-2.5 py-0.5 rounded-full">Alta</span></td>
+                                <td class="p-3"><span class="bg-yellow-200 text-yellow-800 text-xs font-bold mr-2 px-2.5 py-0.5 rounded-full">Médio</span></td>
+                                <td class="p-3">Uso de API de nutrição com curadoria de nutricionistas parceiros.</td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-3">Sobrecarga no suporte ao cliente</td>
+                                <td class="p-3"><span class="bg-yellow-200 text-yellow-800 text-xs font-bold mr-2 px-2.5 py-0.5 rounded-full">Média</span></td>
+                                <td class="p-3"><span class="bg-yellow-200 text-yellow-800 text-xs font-bold mr-2 px-2.5 py-0.5 rounded-full">Médio</span></td>
+                                <td class="p-3">Implementação de chatbot para FAQs e fluxo de escalonamento claro.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3">Atraso no cronograma</td>
+                                <td class="p-3"><span class="bg-yellow-200 text-yellow-800 text-xs font-bold mr-2 px-2.5 py-0.5 rounded-full">Média</span></td>
+                                <td class="p-3"><span class="bg-yellow-200 text-yellow-800 text-xs font-bold mr-2 px-2.5 py-0.5 rounded-full">Médio</span></td>
+                                <td class="p-3">Adoção de Metodologia Ágil com Sprints de 2 semanas e revisões constantes.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            
+            <section id="roadmap" class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-2xl font-bold text-center mb-12">Cronograma de Desenvolvimento do MVP</h2>
+                <div class="relative pl-8 timeline-path">
+                    <div class="relative mb-8 pl-8 timeline-item">
+                        <h3 class="font-bold text-lg text-[#448AFF]">Aprovação e Planejamento</h3>
+                        <p class="text-sm text-gray-500">Data: 29/05/2025</p>
+                        <p class="mt-2 text-gray-700">Definição do escopo, visão e priorização do backlog inicial para o projeto.</p>
+                    </div>
+                    <div class="relative mb-8 pl-8 timeline-item">
+                        <h3 class="font-bold text-lg text-[#448AFF]">Design UX/UI e Protótipo</h3>
+                        <p class="text-sm text-gray-500">Data: 30/06/2025</p>
+                        <p class="mt-2 text-gray-700">Criação de um protótipo navegável de alta fidelidade para ser validado com usuários reais.</p>
+                    </div>
+                    <div class="relative mb-8 pl-8 timeline-item">
+                        <h3 class="font-bold text-lg text-[#448AFF]">Desenvolvimento do Core</h3>
+                        <p class="text-sm text-gray-500">Data: 15/08/2025</p>
+                        <p class="mt-2 text-gray-700">Implementação das funcionalidades centrais: autenticação, questionário e dashboard.</p>
+                    </div>
+                    <div class="relative mb-8 pl-8 timeline-item">
+                        <h3 class="font-bold text-lg text-[#00BFA5]">Desenvolvimento do MVP Completo</h3>
+                        <p class="text-sm text-gray-500">Data: 31/10/2025</p>
+                        <p class="mt-2 text-gray-700">Finalização de todas as funcionalidades do MVP, incluindo plano alimentar, comunidade e conteúdo.</p>
+                    </div>
+                    <div class="relative mb-8 pl-8 timeline-item">
+                        <h3 class="font-bold text-lg text-[#FFC107]">Lançamento Oficial do MVP</h3>
+                        <p class="text-sm text-gray-500">Data: 15/11/2025</p>
+                        <p class="mt-2 text-gray-700">Publicação do aplicativo na Apple Store e Google Play, início da campanha de marketing.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="tech-stack" class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                 <h2 class="text-2xl font-bold text-center mb-6">Nossa Arquitetura Tecnológica</h2>
+                 <p class="max-w-3xl mx-auto text-center text-gray-600 mb-8">Escolhemos um conjunto de tecnologias modernas, escaláveis e robustas para garantir uma experiência de usuário fluida e uma base sólida para o crescimento futuro do BeVegan.</p>
+                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 text-center">
+                    <div class="bg-gray-50 p-4 rounded-lg flex flex-col items-center justify-center">
+                        <span class="text-4xl">⚛️</span>
+                        <p class="mt-2 font-semibold">React Native</p>
+                    </div>
+                     <div class="bg-gray-50 p-4 rounded-lg flex flex-col items-center justify-center">
+                        <span class="text-4xl">📦</span>
+                        <p class="mt-2 font-semibold">Node.js</p>
+                    </div>
+                     <div class="bg-gray-50 p-4 rounded-lg flex flex-col items-center justify-center">
+                        <span class="text-4xl">🍃</span>
+                        <p class="mt-2 font-semibold">MongoDB</p>
+                    </div>
+                     <div class="bg-gray-50 p-4 rounded-lg flex flex-col items-center justify-center">
+                        <span class="text-4xl">🔥</span>
+                        <p class="mt-2 font-semibold">Firebase</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg flex flex-col items-center justify-center">
+                        <span class="text-4xl">☁️</span>
+                        <p class="mt-2 font-semibold">AWS/GCP</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg flex flex-col items-center justify-center">
+                        <span class="text-4xl">⚙️</span>
+                        <p class="mt-2 font-semibold">CI/CD</p>
+                    </div>
+                 </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-12 py-6 border-t">
+            <p class="text-gray-600">&copy; 2025 BeVegan. Transformando a jornada vegana.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const chartColors = {
+            teal: '#00BFA5',
+            amber: '#FFC107',
+            blue: '#448AFF',
+            lightGray: '#e0e0e0',
+            darkGray: '#212121'
+        };
+
+        const tooltipConfig = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                              return label.join(' ');
+                            } else {
+                              return label;
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        const processLabel = (label) => {
+            if (label.length > 16) {
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + word).length > 16) {
+                        lines.push(currentLine.trim());
+                        currentLine = '';
+                    }
+                    currentLine += word + ' ';
+                });
+                lines.push(currentLine.trim());
+                return lines;
+            }
+            return label;
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+
+            if (document.getElementById('marketGrowthChart')) {
+                new Chart(document.getElementById('marketGrowthChart'), {
+                    type: 'line',
+                    data: {
+                        labels: ['2022', '2023', '2024', '2025 (Proj.)', '2026 (Proj.)'],
+                        datasets: [{
+                            label: 'Crescimento do Mercado',
+                            data: [100, 150, 220, 310, 450],
+                            borderColor: chartColors.teal,
+                            backgroundColor: 'rgba(0, 191, 165, 0.1)',
+                            fill: true,
+                            tension: 0.4
+                        }]
+                    },
+                    options: { ...tooltipConfig, responsive: true, maintainAspectRatio: false }
+                });
+            }
+
+            if (document.getElementById('acquisitionChart')) {
+                new Chart(document.getElementById('acquisitionChart'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Meta (10k)', 'Restante'],
+                        datasets: [{
+                            data: [10000, 0],
+                            backgroundColor: [chartColors.blue, chartColors.lightGray],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: { ...tooltipConfig, responsive: true, maintainAspectRatio: false, cutout: '70%', plugins: { legend: { display: false } } }
+                });
+            }
+            
+            if (document.getElementById('retentionChart')) {
+                new Chart(document.getElementById('retentionChart'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Retenção (30%)', 'Churn (70%)'],
+                        datasets: [{
+                            data: [30, 70],
+                            backgroundColor: [chartColors.teal, chartColors.lightGray],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: { ...tooltipConfig, responsive: true, maintainAspectRatio: false, cutout: '70%', plugins: { legend: { display: false } } }
+                });
+            }
+
+            if (document.getElementById('conversionChart')) {
+                new Chart(document.getElementById('conversionChart'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Conversão (5%)', 'Não Convertidos (95%)'],
+                        datasets: [{
+                            data: [5, 95],
+                            backgroundColor: [chartColors.amber, chartColors.lightGray],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: { ...tooltipConfig, responsive: true, maintainAspectRatio: false, cutout: '70%', plugins: { legend: { display: false } } }
+                });
+            }
+
+            if (document.getElementById('investmentChart')) {
+                 new Chart(document.getElementById('investmentChart'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Desenvolvimento (R$30k)', 'Marketing (R$15k)', 'Infraestrutura (R$5k)'],
+                        datasets: [{
+                            data: [30000, 15000, 5000],
+                            backgroundColor: [chartColors.blue, chartColors.teal, chartColors.amber],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: { ...tooltipConfig, responsive: true, maintainAspectRatio: false, cutout: '70%', plugins: { legend: { position: 'bottom', labels: { usePointStyle: true } } } }
+                });
+            }
+            
+            if (document.getElementById('revenueChart')) {
+                const revenueLabels = ['Mês 1-3', 'Mês 4-6', 'Mês 7-9', 'Mês 10-12'];
+                new Chart(document.getElementById('revenueChart'), {
+                    type: 'bar',
+                    data: {
+                        labels: revenueLabels.map(processLabel),
+                        datasets: [
+                            {
+                                label: 'Receita Estimada (R$)',
+                                data: [1500, 4776, 9000, 15000],
+                                backgroundColor: chartColors.teal,
+                            },
+                             {
+                                label: 'Custo Operacional (R$)',
+                                data: [5000, 5000, 6000, 6500],
+                                backgroundColor: chartColors.lightGray,
+                            }
+                        ]
+                    },
+                    options: { ...tooltipConfig, responsive: true, maintainAspectRatio: false, scales: { x: { stacked: false }, y: { stacked: false, beginAtZero: true } }, plugins: { legend: { position: 'bottom' } } }
+                });
+            }
+
+        });
+    </script>
+</body>
+</html>
